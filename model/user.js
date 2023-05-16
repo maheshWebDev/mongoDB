@@ -1,22 +1,20 @@
-const mongodb = require("mongodb");
+const mongoose = require("mongoose");
 
-const {getDb} = require('../config/dbConfig');
+const userSchema = new mongoose.Schema({
+    name :{
+        type :String,
+        required : true
+    },
+    email :{
+        type : String,
+        required : true
+    },
+    password : {
+        type : String,
+        required :true
+    }
+})
 
-class User {
-    constructor(name,email,password){
-        this.name = name;
-        this.email = email;
-        this.password = password;
-    }
-
-    insertUser(){
-        const db = getDb();
-       return db.collection('users').insertOne(this) 
-    }
-     static findUserbyID(id){
-        const db = getDb(id);
-        return db.collection('users').findOne({_id:new mongodb.ObjectId(id)});
-    }
-}
+const User = mongoose.model('users',userSchema)
 
 module.exports = User

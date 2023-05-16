@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 
 const productRoute = require('./router/productRoute');
 
-// const userRoute = require('./router/userRoute')
+const userRoute = require('./router/userRoute')
 
 const app = express();
 
@@ -14,7 +14,7 @@ app.use(express.urlencoded({extended:true}));
 
 app.use(productRoute);
 
-// app.use(userRoute)
+app.use(userRoute)
 // db connection
 
 
